@@ -8,7 +8,7 @@ var CHANGE_EVENT = 'change';
 var _time = parseInt(Date.now() / 1000, 10);
 
 function setTime(t) {
-  _time = t;
+    _time = t;
 }
 
 var TimelineStore = assign({}, EventEmitter.prototype, {
@@ -37,17 +37,17 @@ var TimelineStore = assign({}, EventEmitter.prototype, {
 
 // Register callback to handle all updates
 AppDispatcher.register(function(action) {
-  var text;
+    var time;
 
-  switch(action.actionType) {
-    case 'TIME_SET':
-      time = action.time;
-      TimelineStore.emitChange();
-      setTime(time);
+    switch(action.actionType) {
+        case 'TIME_SET':
+            time = action.time;
+            setTime(time);
+            TimelineStore.emitChange();
 
-    default:
-      // no op
-  }
+        default:
+            // no op
+    }
 });
 
 module.exports = TimelineStore;
